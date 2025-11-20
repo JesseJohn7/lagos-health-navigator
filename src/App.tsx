@@ -1,6 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom'
-import { Sun, Moon, Phone, MapPin, Shield, Heart, Stethoscope, Clock, Users, Search, Star, CheckCircle, BookOpen, Brain, Apple } from 'lucide-react'
-import { useDarkMode } from './contexts/DarkModeContext'
+import {FaSun, FaMoon, FaPhone, FaMapMarkerAlt, FaShieldAlt, FaHeart,FaStethoscope, FaClock, FaUsers, FaSearch, FaStar, FaCheckCircle,FaBookOpen, FaBrain, FaApple,FaMapPin} from "react-icons/fa";
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -11,6 +10,7 @@ import MentalHealthSupport from './pages/MentalHealthSupport'
 import PreventiveCare from './pages/PreventiveCare'
 import './App.css'
 import { useState } from 'react'
+import { useDarkMode } from './contexts/DarkModeContext';
 
 function HomePage() {
   const { darkMode, toggleDarkMode } = useDarkMode()
@@ -23,9 +23,9 @@ function HomePage() {
   ]
 
   const quickActions = [
-    { icon: MapPin, label: 'Find Hospitals', color: 'bg-primary' },
-    { icon: Shield, label: 'Check Insurance', color: 'bg-secondary' },
-    { icon: Phone, label: 'Emergency Guide', color: 'bg-accent' }
+    { icon: FaMapMarkerAlt, label: 'Find Hospitals', color: 'bg-primary' },
+    { icon: FaShieldAlt, label: 'Check Insurance', color: 'bg-secondary' },
+    { icon: FaPhone, label: 'Emergency Guide', color: 'bg-accent' }
   ]
 
   const facilities = [
@@ -78,11 +78,8 @@ function HomePage() {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-primary-200 dark:border-slate-700">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-primary rounded-lg">
-              <Stethoscope className="h-6 w-6 text-white" />
-            </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900 dark:text-white">Lagos Health Navigator</h1>
+              <h1 className="text-xl font-bold text-green-500 dark:text-white">Lagos Health Navigator</h1>
               <p className="text-sm text-slate-600 dark:text-slate-400">Your Guide to Better Healthcare 🏥✨</p>
             </div>
           </div>
@@ -92,7 +89,7 @@ function HomePage() {
             onClick={toggleDarkMode}
             className="p-2"
           >
-            {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {darkMode ? <FaSun className="h-4 w-4" /> : <FaMoon className="h-4 w-4" />}
           </Button>
         </div>
       </header>
@@ -102,24 +99,24 @@ function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 opacity-10 dark:opacity-20"></div>
         <div className="container mx-auto text-center relative z-10">
           <div className="flex justify-center mb-6 space-x-4">
-            <Heart className="h-12 w-12 text-primary animate-pulse" />
-            <Stethoscope className="h-12 w-12 text-secondary animate-bounce" />
-            <Shield className="h-12 w-12 text-accent animate-pulse" />
+            <FaStethoscope className="h-12 w-12 text-secondary animate-bounce" />
+            <FaHeart className="h-12 w-12 text-primary animate-pulse" />
+            
           </div>
           <h2 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4">
-            Your Complete Guide to <span className="text-primary">Lagos Healthcare</span>
+            Your Trusted Guide to <br /> Quality Healthcare <span> in Lagos</span>
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-2xl mx-auto">
-            Find the right care, at the right time, at the right price
+            Get the right care, at the right time, for the right cost.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             {quickActions.map((action, index) => (
               <Button 
                 key={index} 
-                className={`${action.color} hover:opacity-90 text-white px-6 py-3`}
+                className={`${action.color} hover:opacity-90 text-white px-9 py-6`}
                 onClick={() => {
                   const sectionMap: { [key: string]: string } = {
-                    'Find Hospitals': 'facilities-section',
+                    'Find Hospitals': 'facilities-section' ,
                     'Check Insurance': 'insurance-section', 
                     'Emergency Guide': 'emergency-section'
                   };
@@ -142,7 +139,7 @@ function HomePage() {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center p-3 bg-red-100 dark:bg-red-900/30 rounded-full mb-4">
-              <Phone className="h-8 w-8 text-red-600 dark:text-red-400 animate-pulse" />
+              <FaPhone className="h-8 w-8 text-red-600 dark:text-red-400 animate-pulse" />
             </div>
             <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">🚨 EMERGENCY NUMBERS</h3>
             <p className="text-slate-600 dark:text-slate-300">Quick access to emergency medical services</p>
@@ -160,7 +157,7 @@ function HomePage() {
                     className="mt-3 bg-red-600 hover:bg-red-700 text-white w-full"
                     onClick={() => window.open(`tel:${emergency.number}`, '_self')}
                   >
-                    <Phone className="h-4 w-4 mr-2" />
+                    <FaPhone className="h-4 w-4 mr-2" />
                     Call Now
                   </Button>
                 </CardContent>
@@ -174,18 +171,18 @@ function HomePage() {
       <section id="facilities-section" className="py-16 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full mb-4">
-              <MapPin className="h-8 w-8 text-primary" />
+            <div className="inline-flex items-center justify-center p-3 bg-green-100 dark:bg-green-900/30 rounded-full mb-4">
+              <FaMapMarkerAlt className="h-8 w-8 text-green-500" />
             </div>
             <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Find Healthcare Facilities</h3>
             <p className="text-slate-600 dark:text-slate-300 mb-8">Locate hospitals, clinics, and health centers near you</p>
             <div className="max-w-md mx-auto mb-8">
               <div className="relative flex">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <FaSearch className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
                   <Input 
                     placeholder="Search by location, facility name, or service..." 
-                    className="pl-10 py-3 pr-4"
+                    className="pl-10 py-4 pr-4 dark:text-slate-100 bg-white dark:bg-slate-800"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={handleKeyPress}
@@ -193,10 +190,10 @@ function HomePage() {
                 </div>
                 <Button 
                   onClick={handleSearch}
-                  className="ml-2 bg-primary hover:bg-primary-600 px-6"
+                  className="ml-2 bg-green-500 hover:bg-primary-600 px-6"
                   disabled={!searchQuery.trim()}
                 >
-                  <MapPin className="h-4 w-4 mr-2" />
+                  <FaMapPin className="h-4 w-4 mr-2" />
                   Search Maps
                 </Button>
               </div>
@@ -212,7 +209,7 @@ function HomePage() {
                       <Badge variant="secondary" className="mt-1">{facility.type}</Badge>
                     </div>
                     <div className="flex items-center">
-                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <FaStar className="h-4 w-4 text-yellow-400 fill-current" />
                       <span className="ml-1 text-sm font-medium">{facility.rating}</span>
                     </div>
                   </div>
@@ -220,15 +217,15 @@ function HomePage() {
                 <CardContent>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center text-slate-600 dark:text-slate-400">
-                      <MapPin className="h-4 w-4 mr-2" />
+                      <FaMapPin className="h-4 w-4 mr-2" />
                       {facility.address}
                     </div>
                     <div className="flex items-center text-slate-600 dark:text-slate-400">
-                      <Phone className="h-4 w-4 mr-2" />
+                      <FaPhone className="h-4 w-4 mr-2" />
                       {facility.phone}
                     </div>
                     <div className="flex items-center text-slate-600 dark:text-slate-400">
-                      <Clock className="h-4 w-4 mr-2" />
+                      <FaClock className="h-4 w-4 mr-2" />
                       {facility.hours}
                     </div>
                     <div className="flex flex-wrap gap-1 mt-3">
@@ -238,13 +235,13 @@ function HomePage() {
                     </div>
                   </div>
                   <Button 
-                    className="w-full mt-4 bg-primary hover:bg-primary-600"
+                    className="w-full mt-4 bg-green-500 hover:bg-primary-600"
                     onClick={() => {
                       const encodedAddress = encodeURIComponent(facility.address);
                       window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`, '_blank');
                     }}
                   >
-                    <MapPin className="h-4 w-4 mr-2" />
+                    <FaMapPin className="h-4 w-4 mr-2" />
                     Get Directions
                   </Button>
                 </CardContent>
@@ -259,7 +256,7 @@ function HomePage() {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center p-3 bg-secondary-100 dark:bg-secondary-900/30 rounded-full mb-4">
-              <Shield className="h-8 w-8 text-secondary" />
+              <FaShieldAlt className="h-8 w-8 text-secondary" />
             </div>
             <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">LASHMA Insurance Navigator</h3>
             <p className="text-slate-600 dark:text-slate-300">Your guide to Lagos State Health Management Agency benefits</p>
@@ -268,34 +265,34 @@ function HomePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-success mr-2" />
+                 {/*  <FaCheckCircle className="h-6 w-6 text-success mr-2" /> */}
                   Registration Benefits
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-success mr-2" />
+                    <FaCheckCircle className="h-4 w-4 text-success mr-2" />
                     <span>Cancer treatment coverage up to ₦5 million</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-success mr-2" />
+                    <FaCheckCircle className="h-4 w-4 text-success mr-2" />
                     <span>Access to 326 Primary Health Centers</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-success mr-2" />
+                    <FaCheckCircle className="h-4 w-4 text-success mr-2" />
                     <span>Digital health records via Lagos SHIP</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-success mr-2" />
+                    <FaCheckCircle className="h-4 w-4 text-success mr-2" />
                     <span>Reduced wait times (15-20 minutes)</span>
                   </li>
                 </ul>
                 <Button 
-                  className="w-full mt-6 bg-secondary hover:bg-secondary-600"
+                  className="w-full mt-6 bg-green-500 hover:bg-secondary-600"
                   onClick={() => window.open('https://www.lashmaregulations.com.ng/', '_blank')}
                 >
-                  <Shield className="h-4 w-4 mr-2" />
+                  <FaShieldAlt className="h-4 w-4 mr-2" />
                   Register for LASHMA
                 </Button>
               </CardContent>
@@ -303,7 +300,7 @@ function HomePage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center">
-                  <Users className="h-5 w-5 text-accent mr-2" />
+                  <FaUsers className="h-6 w-6 text-accent mr-2" />
                   How to Register
                 </CardTitle>
               </CardHeader>
@@ -346,7 +343,7 @@ function HomePage() {
         <div className="container mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center p-3 bg-accent-100 dark:bg-accent-900/30 rounded-full mb-4">
-              <BookOpen className="h-8 w-8 text-accent" />
+              <FaBookOpen className="h-8 w-8 text-accent" />
             </div>
             <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Health Resources & Guides</h3>
             <p className="text-slate-600 dark:text-slate-300">Comprehensive health information tailored for Lagos residents</p>
@@ -356,7 +353,7 @@ function HomePage() {
               <Card className="hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                 <CardHeader className="text-center">
                   <div className="inline-flex items-center justify-center p-3 bg-green-100 dark:bg-green-900/30 rounded-full mb-3 mx-auto">
-                    <Apple className="h-8 w-8 text-green-600" />
+                    <FaApple className="h-8 w-8 text-green-600" />
                   </div>
                   <CardTitle className="text-lg">Health Tips</CardTitle>
                   <CardDescription>Daily wellness advice for Lagos living</CardDescription>
@@ -375,7 +372,7 @@ function HomePage() {
               <Card className="hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                 <CardHeader className="text-center">
                   <div className="inline-flex items-center justify-center p-3 bg-blue-100 dark:bg-blue-900/30 rounded-full mb-3 mx-auto">
-                    <Users className="h-8 w-8 text-blue-600" />
+                    <FaUsers className="h-8 w-8 text-blue-600" />
                   </div>
                   <CardTitle className="text-lg">Young Adult Health</CardTitle>
                   <CardDescription>Health guidance for ages 18-35</CardDescription>
@@ -394,10 +391,10 @@ function HomePage() {
               <Card className="hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                 <CardHeader className="text-center">
                   <div className="inline-flex items-center justify-center p-3 bg-purple-100 dark:bg-purple-900/30 rounded-full mb-3 mx-auto">
-                    <Brain className="h-8 w-8 text-purple-600" />
+                    <FaBrain className="h-8 w-8 text-purple-600" />
                   </div>
                   <CardTitle className="text-lg">Mental Health Support</CardTitle>
-                  <CardDescription>Comprehensive mental wellness resources</CardDescription>
+                  <CardDescription>Access trusted health tips, guides, and resources for Lagos residents.</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="text-sm text-slate-600 dark:text-slate-400 space-y-1">
@@ -413,7 +410,7 @@ function HomePage() {
               <Card className="hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                 <CardHeader className="text-center">
                   <div className="inline-flex items-center justify-center p-3 bg-orange-100 dark:bg-orange-900/30 rounded-full mb-3 mx-auto">
-                    <Shield className="h-8 w-8 text-orange-600" />
+                    <FaShieldAlt className="h-8 w-8 text-orange-600" />
                   </div>
                   <CardTitle className="text-lg">Preventive Care</CardTitle>
                   <CardDescription>Stay healthy with regular screenings</CardDescription>
@@ -438,11 +435,9 @@ function HomePage() {
           <div className="grid md:grid-cols-5 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2 bg-primary rounded-lg">
-                  <Stethoscope className="h-6 w-6 text-white" />
-                </div>
+              
                 <div>
-                  <h4 className="font-bold">Lagos Health Navigator</h4>
+                  <h4 className="font-bold ">Lagos Health Navigator</h4>
                   <p className="text-sm text-slate-400">Better Healthcare Access</p>
                 </div>
               </div>
